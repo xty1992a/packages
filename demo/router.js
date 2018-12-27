@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import LoopPage from './views/LoopPage'
 import PickerPage from './views/PickerPage'
 import infinitePage from './views/infinitePage'
+import actionPage from './views/actionPage'
 import Home from './views/Home'
 
 Vue.use(Router);
@@ -39,6 +40,14 @@ export default new Router({
 	  component: PickerPage,
 	  meta: {
 		title: 'Picker组件',
+	  },
+	},
+	{
+	  path: '/action',
+	  name: 'action',
+	  component: actionPage,
+	  meta: {
+		title: 'Action组件',
 	  },
 	},
   ],

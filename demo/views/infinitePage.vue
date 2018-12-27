@@ -5,8 +5,9 @@
     </header>
     <section class="body">
       <ui-infinite :onInfinite="infinite" :onRefresh="refresh" @scrollEnd="scrollEnd" ref="list" :offset="300">
-        <p v-for="i in list">item</p>
+        <p v-for="i in list">item{{i}}</p>
       </ui-infinite>
+      <div class="top-btn" v-show="topShow" @click="backTop">top</div>
     </section>
 
     <footer class="foot">
@@ -22,35 +23,41 @@
 	data() {
 	  return {
 		list: 0,
+		topShow: false,
 	  }
 	},
 	mounted() {
 	},
 	methods: {
 	  refresh() {
-		this.list = 0
+		this.list = 0;
 	  },
 	  infinite(done) {
-		console.log('load')
+		console.log('load');
 		setTimeout(() => {
-		  this.list += 10
+		  this.list += 10;
 		  if (this.list < 50) {
-			done()
+			done();
 		  }
 		  else {
-			done(true)
+			done(true);
 		  }
-		}, 500)
+		}, 500);
 	  },
 
 	  scrollEnd(y) {
-		sessionStorage.setItem('y', y)
+		console.log(y)
+		this.topShow = y > 400
+		sessionStorage.setItem('y', y);
+	  },
+	  backTop() {
+		this.$refs.list.moveTo(0)
 	  },
 	},
 	computed: {},
 	watch: {
 	  list(now) {
-		sessionStorage.setItem('list', now)
+		sessionStorage.setItem('list', now);
 	  },
 	},
   }
@@ -86,7 +93,21 @@
       position: relative;
       height: 100%;
       overflow: auto;
+      scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
+
+      .top-btn {
+        position: fixed;
+        right: 10px;
+        bottom: 80px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        background: rgba(0, 0, 0, .4);
+        color: #fff;
+        text-align: center;
+        line-height: 50px;
+      }
     }
 
     .foot {

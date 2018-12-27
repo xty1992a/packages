@@ -16,40 +16,53 @@
 	props: {
 	  show: Boolean,
 	  mountTo: { // action挂载位置
-		type: Element,
-		default: () => document.body
+		type: [Element, String, Function],
+		default: () => document.body,
 	  },
 	  position: {
 		mount: {},
 		type: String,
 		default: 'bottom',
-		validator: v => ['top', 'center', 'bottom'].includes(v)
+		validator: v => ['top', 'center', 'bottom'].includes(v),
 	  },
 	  height: {
 		type: [Number, String],
-		default: '50%'
+		default: '50%',
 	  },
 	  width: {
 		type: [Number, String],
-		default: '100%'
+		default: '100%',
 	  },
 	  bodyClass: {
 		type: String,
-		default: ''
-	  }
+		default: '',
+	  },
 	},
-	data () {
+	data() {
 	  return {}
 	},
 	created() {
 	},
 	mounted() {
-	  this.mountTo.appendChild(this.$el)
+	  let container = this.mountTo || this.$parent.$el
+	  if (typeof this.mountTo === 'string') {
+		container = document.querySelector(this.mountTo)
+	  }
+	  if (this.mountTo instanceof Function) {
+		container = this.mountTo()
+	  }
+	  if (container !== document.body) {
+		if (getComputedStyle(container)['position'] === 'static') {
+		  container.style.position = 'relative'
+		}
+		container.style.overflow = 'hidden'
+	  }
+	  container.appendChild(this.$el)
 	},
 	methods: {
-	  cancel(){
+	  cancel() {
 		this.$emit('update:show', false)
-	  }
+	  },
 	},
 	computed: {
 	  bodyStyle() {
@@ -64,17 +77,17 @@
 		  width += 'px'
 		}
 		return {
-		  height, width
+		  height, width,
 		}
 	  },
 	  actionStyle() {
 		if (this.mountTo === document.body) {
 		  return {
-			position: 'fixed'
+			position: 'fixed',
 		  }
 		}
-	  }
-	}
+	  },
+	},
   }
 </script>
 
@@ -87,6 +100,7 @@
     right: 0;
     top: 0;
     left: 0;
+
     .action-modal {
       opacity: .4;
       background-color: #000;
@@ -96,21 +110,25 @@
       top: 0;
       left: 0;
     }
+
     .action-body {
       background-color: #fff;
     }
+
     .action-bottom {
       position: absolute;
       bottom: 0;
       right: 0;
       left: 0;
     }
+
     .action-top {
       position: absolute;
       right: 0;
       top: 0;
       left: 0;
     }
+
     .action-center {
       position: absolute;
       top: 50%;
@@ -123,6 +141,7 @@
     .action-modal {
       opacity: 0;
     }
+
     .action-body {
       transform: translate3d(0, 100%, 0);
     }
@@ -132,6 +151,7 @@
     .action-modal {
       opacity: 0;
     }
+
     .action-body {
       transform: translate3d(0, -100%, 0);
     }
@@ -141,6 +161,7 @@
     .action-modal {
       opacity: 0;
     }
+
     .action-body {
       transform: translate3d(-50%, -60%, 0);
     }
@@ -150,6 +171,7 @@
   .center-enter-active, .center-leave-active,
   .top-enter-active, .top-leave-active {
     transition: .30s;
+
     .action-modal, .action-body {
       transition: .30s;
     }

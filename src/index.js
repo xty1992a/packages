@@ -2,12 +2,14 @@ import Loop from './packages/Loop/index'
 import Picker from './packages/Picker'
 import Message from './packages/Message'
 import Infinite from './packages/Infinite'
+import Action from './packages/Action'
 import pickItem from './service/pickItem'
 
 const packages = {
   Loop,
   Picker,
   Infinite,
+  Action,
 };
 
 const service = {

@@ -1,7 +1,9 @@
 <template>
   <div class="app">
     <CommonHeader/>
-    <router-view/>
+    <transition :name="transitionName">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -11,13 +13,11 @@
   export default {
 	name: 'app',
 	components: {CommonHeader},
-	data() {
-	  return {}
+	computed: {
+	  transitionName() {
+		return this.$route.path === '/' ? 'right' : 'left'
+	  },
 	},
-	created() {
-	},
-	methods: {},
-	computed: {},
   }
 </script>
 
@@ -27,5 +27,22 @@
     background-color: #f7f7f7;
     font-size: 15px;
     height: 100%;
+  }
+
+  .left-enter, .right-leave-to {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .right-enter, .left-leave-to {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  .left-enter-active,
+  .right-enter-active,
+  .left-leave-active,
+  .right-leave-active {
+    position: absolute;
+    width: 100%;
+    transition: transform .3s;
   }
 </style>

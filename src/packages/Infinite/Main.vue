@@ -1,8 +1,8 @@
 <template>
   <div class="ui-infinite"
-       @touchstart="start"
-       @touchmove="move"
-       @touchend="end"
+       @touchstart.passive="start"
+       @touchmove.passive="move"
+       @touchend.passive="end"
        :style="wrapStyle">
     <div class="ui-infinite-fresh" v-if="onRefresh">
       <p>{{freshText}}</p>
@@ -55,12 +55,17 @@
 		type: Number,
 		default: 100,
 	  },
+	  headHeight: { // 下拉刷新阈值
+		type: Number,
+		default: 50,
+	  },
 	},
 	data() {
 	  return {
 		isOver: false,
 		loading: false,
 		overThreshold: false,
+		duration: 0,
 		touch: {
 		  start: 0,
 		  now: 0,
@@ -69,7 +74,6 @@
 	},
 	mounted() {
 	  this.scrollElement = getScrollParent(this.$el);
-	  this.wrapHeight = this.scrollElement.clientHeight;
 	  this.scrollHandler = this.scroll.bind(this);
 	  this.scrollElement.addEventListener('scroll', this.scrollHandler);
 	  this.loadOver(false);
@@ -114,6 +118,9 @@
 		if (!this.onRefresh) return;
 		let point = e.touches ? e.touches[0] : e;
 		this.touch.start = point.pageY;
+		this.touch.touchY = this.scrollElement.scrollTop; // 记录手指落下时的scrollTop
+		this.pullDown = false
+		this.duration = 0
 	  },
 	  move(e) {
 		if (!this.onRefresh) return;
@@ -121,15 +128,20 @@
 		let now = point.pageY - this.touch.start;
 		if (now < 0) return;
 		if (this.scrollElement.scrollTop) return;
-		e.preventDefault();
+		// e.preventDefault();
 		console.log('down & top');
+		this.pullDown = true
 		this.touch.now = now;
-		this.overThreshold = this.touch.now * this.ratio > 50;
+		this.overThreshold = this.ease(this.touch.now) > this.headHeight;
 	  },
 	  end() {
 		if (!this.onRefresh) return;
 		this.touch.start = 0;
 		this.touch.now = 0;
+		this.touch.touchY = 0;
+		if (this.pullDown) {
+		  this.duration = 300
+		}
 		if (this.overThreshold) {
 		  this.overThreshold = false;
 		  // this.loading = true
@@ -138,19 +150,24 @@
 		}
 	  },
 	  moveTo(y) {
-		console.log('move to', y);
 		this.scrollElement.scrollTop = y;
+	  },
+	  ease(height) {
+		const {headHeight} = this;
+		return height < headHeight
+			? height
+			: height < headHeight * 2
+				? Math.round(headHeight + (height - headHeight) / 2)
+				: Math.round(headHeight * 1.5 + (height - headHeight * 2) / 4);
 	  },
 	},
 	computed: {
 	  wrapStyle() {
-		let offset = this.touch.now * this.ratio || 0;
+		let offset = this.ease(this.touch.now) || 0;
 		return {
-		  transform: `translate3d(0,${offset}px,0)`,
+		  transform: `translate3d(0,${offset - this.touch.touchY}px,0)`,
+		  transition: `transform ${this.duration}ms`,
 		}
-	  },
-	  ratio() {
-		return 1 - ((this.touch.now || 1) / this.wrapHeight) / 2;
 	  },
 	  freshText() {
 		return this.overThreshold ? '松开刷新' : '下拉刷新';
