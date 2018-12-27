@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import LoopPage from './views/LoopPage'
 import PickerPage from './views/PickerPage'
+import infinitePage from './views/infinitePage'
 import Home from './views/Home'
 
 Vue.use(Router);
@@ -22,6 +23,14 @@ export default new Router({
 	  component: LoopPage,
 	  meta: {
 		title: 'Loop组件',
+	  },
+	},
+	{
+	  path: '/infinite',
+	  name: 'infinite',
+	  component: infinitePage,
+	  meta: {
+		title: 'infinite组件',
 	  },
 	},
 	{

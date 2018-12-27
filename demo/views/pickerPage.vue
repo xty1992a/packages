@@ -46,13 +46,13 @@
 	},
 	computed: {
 	  stateText() {
-		let state = this.stateList.find(it => it.value === this.state)
-		return state.label
+		let state = this.stateList.find(it => it.value === this.state);
+		return state.label;
 	  },
 	},
 	watch: {
-	  state(now) {
-		this.$message(`您选择了${this.stateText}`)
+	  state() {
+		this.$message(`您选择了${this.stateText}`);
 	  },
 	},
   }
