@@ -35,6 +35,7 @@
     "webpack-merge": "^4.1.5"
   },
   "dependencies": {
+    "dayjs": "^1.7.8",
     "vue": "^2.5.21",
     "vue-router": "^3.0.2"
   }

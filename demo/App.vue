@@ -22,11 +22,20 @@
 </script>
 
 <style lang="less" rel="stylesheet/less">
+  @import "./styles/index";
 
   .app {
     background-color: #f7f7f7;
     font-size: 15px;
     height: 100%;
+  }
+
+  section {
+    .shadow;
+  }
+
+  p {
+    padding: 10px;
   }
 
   .left-enter, .right-leave-to {
