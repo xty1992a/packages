@@ -1,5 +1,5 @@
 <template>
-  <div class="picker"
+  <div class="picker-column"
        @touchstart.stop="onTouchStart"
        @touchmove.stop.prevent="onTouchMove"
        @touchend.stop="onTouchEnd"
@@ -23,7 +23,7 @@
 
 <script>
   export default {
-	name: 'picker',
+	name: 'picker-column',
 	props: {
 	  options: {
 		type: Array,
@@ -104,27 +104,27 @@
 		}
 	  },
 	},
+	watch: {
+	  options: {
+		handler(now) {
+		  if (this.valueIndex < 0 && now.length) {
+			this.$emit('input', now[0].value)
+		  }
+		}, deep: true,
+	  },
+	},
   }
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  .picker-title {
-    background-color: #f7f7f7;
-    font-weight: 500;
-    text-align: center;
-    padding: 8px 20px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  .picker {
+  .picker-column {
     overflow: hidden;
     position: relative;
     height: 100%;
 
     .options {
       .item {
+        text-align: center;
         padding: 8px 10px;
       }
     }

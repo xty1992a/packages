@@ -7,8 +7,8 @@ const PickerAction = Vue.component('PickerAction', {
   components: {Action, Picker},
   data() {
 	return {
-	  options: [],
-	  value: '',
+	  columns: [],
+	  value: [],
 	  title: '',
 	  isSame: (a, b) => a === b,
 	  visibility: false,
@@ -16,17 +16,16 @@ const PickerAction = Vue.component('PickerAction', {
 	}
   },
   mounted() {
-	console.log(this.$el)
 	setTimeout(() => {
 	  this.mounted = true
-	  console.log(this.$el)
 	}, 20)
   },
   methods: {
 	pickItem(value) {
-	  // this.promise && this.promise.resolve(value)
 	  this.value = value
-	  // this.close()
+	  if (this.getColumns) {
+		this.columns = this.getColumns(value)
+	  }
 	},
 	cancel() {
 	  this.promise && this.promise.reject()
@@ -63,7 +62,7 @@ const PickerAction = Vue.component('PickerAction', {
 		<button @click="confirm">确定</button>
   	</header>
   	<section>
-  		<picker v-if="mounted" :options="options" :value="value" mask @input="pickItem"/>
+  		<picker v-if="mounted" :columns="columns" :value="value" mask @input="pickItem"/>
   	</section>
   </div>
 </action>
@@ -72,12 +71,15 @@ const PickerAction = Vue.component('PickerAction', {
 
 const MainInstance = Vue.extend(PickerAction)
 const dftOption = {
-  value: '',
-  options: [],
+  value: [],
+  columns: [],
   isSame: (a, b) => a === b,
 }
 
 export default opt => new Promise((resolve, reject) => {
+  if (opt.getColumns) {
+	opt.columns = opt.getColumns(opt.value)
+  }
   let data = {...dftOption, ...opt, promise: {resolve, reject}}
   let instance = new MainInstance({data})
   instance.vm = instance.$mount()
