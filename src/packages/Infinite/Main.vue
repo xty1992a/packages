@@ -1,8 +1,8 @@
 <template>
   <div class="ui-infinite"
        @touchstart.passive="start"
-       @touchmove.passive="move"
-       @touchend.passive="end"
+       @touchmove="move"
+       @touchend="end"
        :style="wrapStyle">
     <div class="ui-infinite-fresh" v-if="onRefresh">
       <p>{{freshText}}</p>
@@ -128,7 +128,7 @@
 		let now = point.pageY - this.touch.start;
 		if (now < 0) return;
 		if (this.scrollElement.scrollTop) return;
-		// e.preventDefault();
+		e.preventDefault();
 		console.log('down & top');
 		this.pullDown = true
 		this.touch.now = now;

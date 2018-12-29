@@ -1,6 +1,6 @@
 <template>
   <div class="common-header">
-    <span @click="$router.back()" style="float:left;" v-show="routeDeep">返回</span>
+    <span @click="$router.replace({name: 'home'})" style="float:left;" v-show="routeDeep">返回</span>
     <span>{{title}}</span>
   </div>
 </template>
@@ -31,7 +31,7 @@
 
   .common-header {
     .shadow;
-    padding: 10px;
+    padding: 15px;
     text-align: center;
     position: fixed;
     z-index: 1;

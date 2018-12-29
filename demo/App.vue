@@ -32,7 +32,7 @@
 
     .view-container {
       background-color: #f7f7f7;
-      padding-top: 40px;
+      padding-top: 50px;
       height: 100%;
     }
   }
