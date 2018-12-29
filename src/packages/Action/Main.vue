@@ -1,7 +1,7 @@
 <template>
   <transition :name="position">
     <div class="ui-action" v-show="show" :style="actionStyle">
-      <div class="action-modal" key="modal" @click="cancel"></div>
+      <div class="action-modal" key="modal" @click="cancel" @touchmove.prevent></div>
       <div class="action-body" :class="`action-${position} ${bodyClass}`" :style="bodyStyle" key="body">
         <slot></slot>
       </div>

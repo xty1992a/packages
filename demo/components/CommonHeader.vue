@@ -33,5 +33,10 @@
     .shadow;
     padding: 10px;
     text-align: center;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    left: 0;
   }
 </style>

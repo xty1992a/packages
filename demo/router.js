@@ -4,6 +4,7 @@ import LoopPage from './views/LoopPage'
 import PickerPage from './views/PickerPage'
 import infinitePage from './views/infinitePage'
 import actionPage from './views/actionPage'
+import InputNumberPage from './views/inputNumberPage'
 import Home from './views/Home'
 
 Vue.use(Router);
@@ -48,6 +49,14 @@ export default new Router({
 	  component: actionPage,
 	  meta: {
 		title: 'Action组件',
+	  },
+	},
+	{
+	  path: '/inputNumber',
+	  name: 'inputNumber',
+	  component: InputNumberPage,
+	  meta: {
+		title: 'InputNumberPage组件',
 	  },
 	},
   ],

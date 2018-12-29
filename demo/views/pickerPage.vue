@@ -2,19 +2,27 @@
   <div class="picker-demo">
     <h3 class="title">基础用法</h3>
     <section>
-      <ui-picker mask v-model="state" :columns="stateList"/>
+      <ui-picker mask v-model="pickedState" :columns="stateList"/>
     </section>
 
     <h3 class="title">多列</h3>
     <section>
-      <ui-picker mask v-model="pickedRegion" :columns="region"/>
+      <ui-picker mask v-model="pickedTime" :columns="timeList"/>
     </section>
 
     <h3 class="title">函数式调用</h3>
     <section>
       <p class="panel" @click="pickState">
         <span>地区</span>
-        <span style="float: right;">{{pickedRegion.join(',')}}</span>
+        <span style="float: right;">{{pickedRegion.join('-')}}</span>
+      </p>
+    </section>
+
+    <h3 class="title">三级地址联动</h3>
+    <section>
+      <p class="panel" @click="pickRegion">
+        <span>地区</span>
+        <span style="float: right;">{{addressLabel}}</span>
       </p>
     </section>
 
@@ -22,15 +30,37 @@
 </template>
 
 <script>
+  import Region from '../utils/region'
+  // region 辅助函数
+  const fmt = v => ({value: v, label: v}); // 格式化为picker所需格式
+  const fillFrom = offset => len => [...Array(len)].map((n, i) => i + offset);
+  const fillOne = fillFrom(1);
+  const fill1970 = fillFrom(1970);
+  const isLeap = year => (year % 4 === 0) && (year % 100 !== 0 || year % 400 === 0);
+  const dayList = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
   const cities = {
 	'浙江': ['杭州', '宁波', '温州', '嘉兴', '湖州'],
 	'福建': ['福州', '厦门', '莆田', '三明', '泉州'],
   };
+
   const getRegion = (province) => {
-	let c1 = Object.keys(cities).map(c => ({value: c, label: c}))
-	let c2 = cities[province].map(c => ({value: c, label: c}))
-	return [c1, c2]
+	let c1 = Object.keys(cities);
+	let c2 = cities[province || c1[0]];
+	return [c1, c2].map(arr => arr.map(fmt));
   };
+
+  const getTime = ([year, month, date]) => {
+	let dayCount = dayList[month - 1];
+	if (isLeap(year) && month === 2) {
+	  dayCount = 28
+	}
+	let c1 = fill1970(50).map(fmt);
+	let c2 = fillOne(12).map(fmt);
+	let c3 = fillOne(dayCount).map(fmt);
+	return [c1, c2, c3]
+  };
+  // endregion
 
   export default {
 	name: 'picker-demo',
@@ -38,8 +68,10 @@
 	data() {
 	  return {
 		pickedRegion: ['浙江', '杭州'],
-		state: ['usa'],
-
+		pickedTime: [2012, 3, 1],
+		pickedAddress: ['1', '1', '1'],
+		pickedState: ['usa'],
+		regionInstance: null,
 		stateList: [
 		  [
 			{label: '美国', value: 'usa'},
@@ -50,6 +82,13 @@
 		  ],
 		],
 	  }
+	},
+	created() {
+	  import('../utils/region.json')
+		  .then(res => {
+			this.regionInstance = new Region(res.default);
+		  })
+		  .catch(console.log);
 	},
 	methods: {
 	  pickState() {
@@ -62,20 +101,39 @@
 			})
 			.catch(console.log)
 	  },
+
+	  pickRegion() {
+		if (!this.regionInstance) return;
+		this.$service.pickItem({
+		  value: this.pickedAddress,
+		  getColumns: ([pid, cid, yid]) => {
+			this.regionInstance.pickProvince(pid);
+			this.regionInstance.pickCity(cid);
+			this.regionInstance.pickCountry(yid);
+			let {provinces, cities, countries} = this.regionInstance;
+			return [provinces, cities, countries]
+		  },
+		})
+			.then(res => {
+			  this.pickedAddress = res
+			})
+			.catch(console.log)
+	  },
 	},
 	computed: {
-	  stateText() {
-		let labels = this.state.map((val, index) => this.stateList[index].find(s => s.value === val).label)
-		return labels.join(',');
+	  timeList() {
+		return getTime(this.pickedTime);
 	  },
-	  region() {
-		let [province, city] = this.pickedRegion
-		return getRegion(province)
+
+	  addressLabel() {
+		if (!this.regionInstance) return '';
+		return this.regionInstance.getLabel(this.pickedAddress);
 	  },
 	},
 	watch: {
-	  state() {
-		this.$message(`您选择了${this.stateText}`);
+	  pickedState(now) {
+		let labels = now.map((val, index) => this.stateList[index].find(s => s.value === val).label)
+		this.$message(`您选择了${labels.join(',')}`);
 	  },
 	},
   }
@@ -86,6 +144,7 @@
 
   .picker-demo {
     padding: 10px;
+    background-color: #f7f7f7;
 
     section {
       .shadow;

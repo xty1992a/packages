@@ -20,7 +20,7 @@ module.exports = merge(base, {
   },
   mode: 'development',
   devServer: {
-	contentBase: path.join(__dirname, '../demo'),
+	contentBase: path.join(__dirname, '../'),
 	compress: true,
 	hot: true,
 	port: 8080,
@@ -34,7 +34,7 @@ module.exports = merge(base, {
 	  'PRODUCTION': false,
 	}),
 	new HtmlWebpackPlugin({
-	  filename: 'demo/index.html',
+	  filename: 'index.html',
 	  template: 'demo/index.html',
 	  inject: true,
 	  hash: true,

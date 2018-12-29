@@ -67,7 +67,7 @@
 
   .infinite-page {
     background-color: #f7f7f7;
-    height: ~'calc(100% - 40px)';
+    height: 100%;
     position: relative;
     padding: 40px 0 50px;
 

@@ -4,6 +4,20 @@ import Action from '../packages/Action'
 import '../styles/pickItem.less'
 
 const PickerAction = Vue.component('PickerAction', {
+  template: `
+  <action :show.sync="visibility" :height="200">
+  <div class="picker-action">
+	<header>
+		<button @click="cancel">取消</button>
+			<span>{{title}}</span>
+		<button @click="confirm">确定</button>
+  	</header>
+  	<section>
+  		<picker v-if="mounted" :columns="columns" :value="value" mask @input="pickItem"/>
+  	</section>
+  </div>
+</action>
+  `,
   components: {Action, Picker},
   data() {
 	return {
@@ -22,67 +36,53 @@ const PickerAction = Vue.component('PickerAction', {
   },
   methods: {
 	pickItem(value) {
-	  this.value = value
+	  this.value = value;
 	  if (this.getColumns) {
-		this.columns = this.getColumns(value)
+		this.columns = this.getColumns(value);
 	  }
 	},
 	cancel() {
-	  this.promise && this.promise.reject()
-	  this.close()
+	  this.promise && this.promise.reject();
+	  this.close();
 	},
 	confirm() {
-	  this.promise && this.promise.resolve(this.value)
-	  this.close()
+	  this.promise && this.promise.resolve(this.value);
+	  this.close();
 	},
 
 	close() {
-	  this.visibility = false
+	  this.visibility = false;
 	  setTimeout(() => {
-		this.$destroy(true)
+		this.$destroy(true);
 	  }, 320)
 	},
   },
   destroyed() {
-	this.$el.parentNode && this.$el.parentNode.removeChild(this.$el)
+	this.$el.parentNode && this.$el.parentNode.removeChild(this.$el);
   },
   watch: {
 	visibility(now) {
 	  if (!now) {
-		this.close()
+		this.close();
 	  }
 	},
   },
-  template: `
-  <action :show.sync="visibility">
-  <div class="picker-action">
-	<header>
-		<button @click="cancel">取消</button>
-			<span>{{title}}</span>
-		<button @click="confirm">确定</button>
-  	</header>
-  	<section>
-  		<picker v-if="mounted" :columns="columns" :value="value" mask @input="pickItem"/>
-  	</section>
-  </div>
-</action>
-  `,
-})
+});
 
-const MainInstance = Vue.extend(PickerAction)
+const MainInstance = Vue.extend(PickerAction);
 const dftOption = {
   value: [],
   columns: [],
   isSame: (a, b) => a === b,
-}
+};
 
 export default opt => new Promise((resolve, reject) => {
   if (opt.getColumns) {
-	opt.columns = opt.getColumns(opt.value)
+	opt.columns = opt.getColumns(opt.value);
   }
-  let data = {...dftOption, ...opt, promise: {resolve, reject}}
-  let instance = new MainInstance({data})
-  instance.vm = instance.$mount()
-  document.body.appendChild(instance.vm.$el)
-  instance.vm.visibility = true
+  let data = {...dftOption, ...opt, promise: {resolve, reject}};
+  let instance = new MainInstance({data});
+  instance.vm = instance.$mount();
+  document.body.appendChild(instance.vm.$el);
+  instance.vm.visibility = true;
 })

@@ -1,9 +1,11 @@
 <template>
   <div class="app">
     <CommonHeader/>
-    <transition :name="transitionName">
-      <router-view/>
-    </transition>
+    <section class="view-container">
+      <transition :name="transitionName">
+        <router-view/>
+      </transition>
+    </section>
   </div>
 </template>
 
@@ -27,6 +29,11 @@
     background-color: #f7f7f7;
     font-size: 15px;
     height: 100%;
+
+    .view-container {
+      height: 100%;
+      padding-top: 40px;
+    }
   }
 
   .left-enter, .right-leave-to {
