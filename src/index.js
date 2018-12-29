@@ -5,6 +5,7 @@ import Infinite from './packages/Infinite'
 import InputNumber from './packages/InputNumber'
 import Action from './packages/Action'
 import pickItem from './service/pickItem'
+import getDateByPicker from './packages/DatePicker'
 
 const packages = {
   Loop,
@@ -16,6 +17,7 @@ const packages = {
 
 const service = {
   pickItem,
+  getDateByPicker
 };
 
 const defaultOption = {

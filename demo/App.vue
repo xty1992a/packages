@@ -24,6 +24,7 @@
 </script>
 
 <style lang="less" rel="stylesheet/less">
+  @import "./styles/index";
 
   .app {
     background-color: #f7f7f7;
@@ -34,6 +35,14 @@
       height: 100%;
       padding-top: 40px;
     }
+  }
+
+  section {
+    .shadow;
+  }
+
+  p {
+    padding: 10px;
   }
 
   .left-enter, .right-leave-to {
