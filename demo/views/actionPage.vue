@@ -1,8 +1,10 @@
 <template>
   <div class="action-page">
-    <button @click="show.bottom=true">底部</button>
-    <button @click="show.center=true">中部</button>
-    <button @click="show.top=true">顶部</button>
+    <div style="text-align: center;">
+      <ui-button @click="show.bottom=true">底部</ui-button>
+      <ui-button @click="show.center=true">中部</ui-button>
+      <ui-button @click="show.top=true">顶部</ui-button>
+    </div>
 
     <div class="box" ref="box">
       <p>插入指定元素</p>
@@ -49,12 +51,6 @@
   .action-page {
     height: 100%;
     padding-top: 20px;
-
-    button {
-      background-color: #fff;
-      padding: 8px 15px;
-      border: 1px solid #e5e5e5;
-    }
 
     .box {
       text-align: center;

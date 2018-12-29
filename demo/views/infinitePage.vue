@@ -11,7 +11,7 @@
     </section>
 
     <footer class="foot">
-      <button>按钮</button>
+      <ui-button type="primary" size="large">按钮</ui-button>
     </footer>
   </div>
 </template>
@@ -46,12 +46,12 @@
 	  },
 
 	  scrollEnd(y) {
-		console.log(y)
-		this.topShow = y > 400
+		console.log(y);
+		this.topShow = y > 400;
 		sessionStorage.setItem('y', y);
 	  },
 	  backTop() {
-		this.$refs.list.moveTo(0)
+		this.$refs.list.moveTo(0);
 	  },
 	},
 	computed: {},
@@ -121,11 +121,6 @@
 
       button {
         height: 100%;
-        width: 100%;
-        background-color: #409EFF;
-        color: #fff;
-        font-size: 16px;
-        border: 0;
       }
     }
 

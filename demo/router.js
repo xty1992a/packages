@@ -6,6 +6,7 @@ import infinitePage from './views/infinitePage'
 import actionPage from './views/actionPage'
 import InputNumberPage from './views/inputNumberPage'
 import DatePickerPage from './views/datePickerPage'
+import buttonPage from './views/buttonPage'
 import Home from './views/Home'
 
 Vue.use(Router);
@@ -21,6 +22,14 @@ export default new Router({
 	  },
 	},
 	{
+	  path: '/button',
+	  name: 'button',
+	  component: buttonPage,
+	  meta: {
+		title: 'Button组件',
+	  },
+	},
+	{
 	  path: '/loop',
 	  name: 'loop',
 	  component: LoopPage,
@@ -33,7 +42,7 @@ export default new Router({
 	  name: 'infinite',
 	  component: infinitePage,
 	  meta: {
-		title: 'infinite组件',
+		title: 'Infinite组件',
 	  },
 	},
 	{

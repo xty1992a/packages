@@ -57,8 +57,8 @@
     left: 0;
 
     .ui-message__body {
-      background-color: rgba(0, 0, 0, .7);
-      padding: 12px 10px;
+      background-color: rgba(0, 0, 0, .8);
+      padding: 10px;
       border-radius: 4px;
       text-align: center;
       max-width: 50%;
@@ -78,7 +78,7 @@
 
     .ui-message__text {
       min-width: 50px;
-      line-height: 1.6;
+      line-height: 1.4;
     }
   }
 

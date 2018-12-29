@@ -4,6 +4,7 @@ import Message from './packages/Message'
 import Infinite from './packages/Infinite'
 import InputNumber from './packages/InputNumber'
 import Action from './packages/Action'
+import Button from './packages/Button'
 import pickItem from './service/pickItem'
 import getDateByPicker from './packages/DatePicker'
 
@@ -12,12 +13,13 @@ const packages = {
   Picker,
   Infinite,
   Action,
+  Button,
   InputNumber,
 };
 
 const service = {
   pickItem,
-  getDateByPicker
+  getDateByPicker,
 };
 
 const defaultOption = {

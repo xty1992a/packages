@@ -27,13 +27,13 @@
   @import "./styles/index";
 
   .app {
-    background-color: #f7f7f7;
     font-size: 15px;
     height: 100%;
 
     .view-container {
-      height: 100%;
+      background-color: #f7f7f7;
       padding-top: 40px;
+      height: 100%;
     }
   }
 
