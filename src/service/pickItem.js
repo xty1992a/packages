@@ -5,7 +5,7 @@ import '../styles/pickItem.less'
 
 const PickerAction = Vue.component('PickerAction', {
   template: `
-  <action :show.sync="visibility" :height="200">
+  <action :show.sync="visibility" :height="220">
   <div class="picker-action">
 	<header>
 		<button @click="cancel">取消</button>

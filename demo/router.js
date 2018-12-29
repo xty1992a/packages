@@ -7,6 +7,7 @@ import actionPage from './views/actionPage'
 import InputNumberPage from './views/inputNumberPage'
 import DatePickerPage from './views/datePickerPage'
 import buttonPage from './views/buttonPage'
+import MessagePage from './views/messagePage'
 import Home from './views/Home'
 
 Vue.use(Router);
@@ -27,6 +28,14 @@ export default new Router({
 	  component: buttonPage,
 	  meta: {
 		title: 'Button组件',
+	  },
+	},
+	{
+	  path: '/Message',
+	  name: 'message',
+	  component: MessagePage,
+	  meta: {
+		title: 'MessagePage组件',
 	  },
 	},
 	{

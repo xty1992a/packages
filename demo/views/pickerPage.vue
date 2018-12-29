@@ -50,7 +50,7 @@
 	return [c1, c2].map(arr => arr.map(fmt));
   };
 
-  const getTime = ([year, month, date]) => {
+  const getTime = ([year, month]) => {
 	let dayCount = dayList[month - 1];
 	if (isLeap(year) && month === 2) {
 	  dayCount = 28
@@ -70,11 +70,11 @@
 		pickedRegion: ['浙江', '杭州'],
 		pickedTime: [2012, 3, 1],
 		pickedAddress: ['1', '1', '1'],
-		pickedState: ['usa'],
+		pickedState: ['USA'],
 		regionInstance: null,
 		stateList: [
 		  [
-			{label: '美国', value: 'usa'},
+			{label: '美国', value: 'USA'},
 			{label: '中国', value: 'China'},
 			{label: '法国', value: 'France'},
 			{label: '俄国', value: 'Russia'},
@@ -132,7 +132,7 @@
 	},
 	watch: {
 	  pickedState(now) {
-		let labels = now.map((val, index) => this.stateList[index].find(s => s.value === val).label)
+		let labels = now.map((val, index) => this.stateList[index].find(s => s.value === val).label);
 		this.$message(`您选择了${labels.join(',')}`);
 	  },
 	},

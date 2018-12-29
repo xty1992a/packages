@@ -24,54 +24,54 @@
 	created() {
 	},
 	mounted() {
-	  this.initElement()
-	  this.getElementRect()
+	  this.initElement();
+	  this.getElementRect();
 	},
 	methods: {
 	  initElement() {
-		let slots = this.$slots.default
+		let slots = this.$slots.default;
 		if (slots.length > this.count) {
-		  console.log('should repeat')
-		  this.repeatElement()
+		  console.log('should repeat');
+		  this.repeatElement();
 		  setTimeout(() => {
-			this.autoPlay()
+			this.autoPlay();
 		  }, 1000)
 		}
 	  },
 
 	  repeatElement() {
-		let len = this.count
-		let slider = this.$refs.slider
+		let len = this.count;
+		let slider = this.$refs.slider;
 		while (len--) {
-		  let index = this.count - len - 1
-		  slider.appendChild(slider.children[index].cloneNode(true))
+		  let index = this.count - len - 1;
+		  slider.appendChild(slider.children[index].cloneNode(true));
 		}
 	  },
 
 	  autoPlay() {
-		clearInterval(this.timeID)
+		clearInterval(this.timeID);
 		this.timeID = setInterval(() => {
-		  this.next()
+		  this.next();
 		}, 1000)
 	  },
 
 	  transitionEnd() {
 		if (this.index === this.$slots.default.length) {
-		  this.index = 0
-		  this.quick = true
+		  this.index = 0;
+		  this.quick = true;
 		}
 	  },
 
 	  next() {
-		this.index++
+		this.index++;
 	  },
 
 	  getElementRect() {
-		let el = this.$el
-		let slider = el.children[0]
-		let item = slider.children[0]
+		let el = this.$el;
+		let slider = el.children[0];
+		let item = slider.children[0];
 		if (item) {
-		  this.itemRect.height = item.clientHeight
+		  this.itemRect.height = item.clientHeight;
 		}
 	  },
 	},
@@ -82,8 +82,8 @@
 		}
 	  },
 	  sliderStyle() {
-		let len = this.$slots.default.length
-		let offset = this.index * this.itemRect.height
+		let len = this.$slots.default.length;
+		let offset = this.index * this.itemRect.height;
 		return {
 		  height: len * this.itemRect.height + 'px',
 		  transform: `translate3d(0,${-offset}px, 0)`,
@@ -95,13 +95,13 @@
 	  quick(now) {
 		if (now) {
 		  setTimeout(() => {
-			this.quick = false
-		  }, 280)
+			this.quick = false;
+		  }, 280);
 		}
 	  },
 	},
 	beforeDestroy() {
-	  clearInterval(this.timeID)
+	  clearInterval(this.timeID);
 	},
   }
 </script>
