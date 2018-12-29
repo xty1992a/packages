@@ -42,7 +42,6 @@
   }
 
   p {
-    padding: 10px;
   }
 
   .left-enter, .right-leave-to {

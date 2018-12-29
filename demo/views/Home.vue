@@ -1,11 +1,14 @@
 <template>
   <div class="home">
     <section>
-      <ul class="list">
-        <router-link tag="li" class="item" v-for="route in routes" :key="route.name" :to="{name:route.name}">
-          <span>{{route.meta.title}}</span>
-        </router-link>
-      </ul>
+      <ui-cell
+              v-for="route in routes"
+              :title="route.meta.title"
+              :key="route.name"
+              :to="route"
+              clickable
+              border
+      ></ui-cell>
     </section>
   </div>
 </template>
@@ -40,16 +43,5 @@
       border-radius: 4px;
     }
 
-    .list {
-      padding-left: 10px;
-
-      .item {
-        padding: 10px;
-
-        &:not(:last-child) {
-          border-bottom: 1px solid #e5e5e5;
-        }
-      }
-    }
   }
 </style>

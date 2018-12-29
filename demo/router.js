@@ -27,7 +27,7 @@ export default new Router({
 	  name: 'button',
 	  component: buttonPage,
 	  meta: {
-		title: 'Button组件',
+		title: 'Button 按钮',
 	  },
 	},
 	{
@@ -35,7 +35,7 @@ export default new Router({
 	  name: 'message',
 	  component: MessagePage,
 	  meta: {
-		title: 'MessagePage组件',
+		title: 'Message 提示',
 	  },
 	},
 	{
@@ -43,7 +43,7 @@ export default new Router({
 	  name: 'loop',
 	  component: LoopPage,
 	  meta: {
-		title: 'Loop组件',
+		title: 'Loop 抽奖轮播',
 	  },
 	},
 	{
@@ -51,7 +51,7 @@ export default new Router({
 	  name: 'infinite',
 	  component: infinitePage,
 	  meta: {
-		title: 'Infinite组件',
+		title: 'Infinite 上拉加载',
 	  },
 	},
 	{
@@ -59,7 +59,7 @@ export default new Router({
 	  name: 'picker',
 	  component: PickerPage,
 	  meta: {
-		title: 'Picker组件',
+		title: 'Picker 选择器',
 	  },
 	},
 	{
@@ -67,7 +67,7 @@ export default new Router({
 	  name: 'datePickerPage',
 	  component: DatePickerPage,
 	  meta: {
-		title: 'DatePickerPage组件',
+		title: 'DatePicker 日期选择器',
 	  },
 	},
 	{
@@ -75,7 +75,7 @@ export default new Router({
 	  name: 'action',
 	  component: actionPage,
 	  meta: {
-		title: 'Action组件',
+		title: 'Action 抽屉',
 	  },
 	},
 	{
@@ -83,7 +83,7 @@ export default new Router({
 	  name: 'inputNumber',
 	  component: InputNumberPage,
 	  meta: {
-		title: 'InputNumberPage组件',
+		title: 'InputNumber 步进器',
 	  },
 	},
   ],

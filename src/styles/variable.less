@@ -1,0 +1,22 @@
+.clickable() {
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    opacity: 0;
+  }
+
+  &:active {
+    &:before {
+      opacity: 1;
+    }
+  }
+
+}

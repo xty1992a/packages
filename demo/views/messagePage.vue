@@ -24,7 +24,7 @@
 	  return {
 		delay: {
 		  message: '延时提示',
-		  duration: 3000,
+		  duration: 4000,
 		},
 		success: {
 		  message: '成功提示',
@@ -35,6 +35,7 @@
 		  icon: 'error',
 		},
 		question: {
+		  title: '警告',
 		  message: '警告提示',
 		  icon: 'question',
 		},
@@ -61,7 +62,6 @@
     }
 
     p {
-      padding: 10px;
     }
 
   }
