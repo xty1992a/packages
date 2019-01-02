@@ -1,7 +1,7 @@
 <template>
   <div class="infinite-page">
     <header class="head">
-      <div class="search"></div>
+      <ui-search v-model="searchStr" @search="searchHandler" placeholder="搜索关键字"/>
     </header>
     <section class="body">
       <ui-infinite :onInfinite="infinite" :onRefresh="refresh" @scrollEnd="scrollEnd" ref="list" :offset="300">
@@ -24,11 +24,17 @@
 	  return {
 		list: 0,
 		topShow: false,
+		searchStr: '',
 	  }
 	},
 	mounted() {
 	},
 	methods: {
+	  searchHandler(str) {
+		console.log(str);
+		this.list = 0;
+		this.$refs.list.loadOver(false)
+	  },
 	  refresh() {
 		this.list = 0;
 	  },
@@ -77,16 +83,6 @@
       top: 0;
       left: 0;
       height: 40px;
-      background-color: #f3f3f3;
-      box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-      z-index: 1;
-      padding: 8px;
-
-      .search {
-        height: 100%;
-        background-color: #fff;
-        border-radius: 4px;
-      }
     }
 
     .body {

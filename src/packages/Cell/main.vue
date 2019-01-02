@@ -1,20 +1,20 @@
 <template>
   <div class="ui-cell" :class="cls" @click="clickHandler">
     <slot v-if="icon">
-      <ui-icon :icon="icon"/>
+      <ui-icon class="cell-icon" :icon="icon"/>
     </slot>
-    <div class="ui-cell--title">
+    <div class="ui-cell--title" v-if="title||$slots.title">
       <slot name="title">
         <span>{{title}}</span>
       </slot>
     </div>
-    <div class="ui-cell--value" v-if="value">
+    <div class="ui-cell--value" v-if="value||$slots.value">
       <slot name="value">
         <span>{{value}}</span>
       </slot>
     </div>
-    <slot name="right-icon">
-      <ui-icon icon="arrow-right"/>
+    <slot name="right-icon" v-if="clickable||$slots['right-icon']">
+      <ui-icon class="cell-icon right-icon" icon="arrow-right"/>
     </slot>
   </div>
 </template>
@@ -36,8 +36,14 @@
 	  to: {
 		type: null,
 	  },
+	  url: {
+		type: String,
+	  },
 	  clickable: Boolean,
-	  border: Boolean,
+	  border: {
+		type: Boolean,
+		default: true,
+	  },
 	},
 	data() {
 	  return {}
@@ -46,6 +52,9 @@
 	  clickHandler() {
 		if (this.to && this.$router) {
 		  this.$router.push(this.to)
+		}
+		if (this.url) {
+		  window.location = url
 		}
 		this.$emit('click', ...arguments)
 	  },
@@ -71,11 +80,16 @@
   .ui-cell {
     padding: 10px;
     display: flex;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 24px;
 
-    .ui-icon {
+    .cell-icon {
       margin-top: 5px;
+      margin-right: 5px;
+    }
+
+    .right-icon {
+      margin-left: 5px;
     }
 
     &.ui-cell-clickable {
@@ -88,6 +102,11 @@
 
     .ui-cell--value, .ui-cell--title {
       flex: 1;
+    }
+
+    .ui-cell--value {
+      text-align: right;
+      overflow: hidden;
     }
   }
 </style>

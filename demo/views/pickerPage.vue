@@ -12,18 +12,12 @@
 
     <h3 class="title">函数式调用</h3>
     <section>
-      <p class="panel" @click="pickState">
-        <span>地区</span>
-        <span style="float: right;">{{pickedRegion.join('-')}}</span>
-      </p>
+      <ui-cell title="地区" :value="pickedRegion.join('-')" @click="pickState"/>
     </section>
 
     <h3 class="title">三级地址联动</h3>
     <section>
-      <p class="panel" @click="pickRegion">
-        <span>地区</span>
-        <span style="float: right;">{{addressLabel}}</span>
-      </p>
+      <ui-cell title="地区" :value="addressLabel" @click="pickRegion"/>
     </section>
 
   </div>
@@ -150,10 +144,5 @@
       .shadow;
       margin-bottom: 10px;
     }
-
-    p {
-      padding: 10px;
-    }
-
   }
 </style>

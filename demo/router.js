@@ -7,7 +7,10 @@ import actionPage from './views/actionPage'
 import InputNumberPage from './views/inputNumberPage'
 import DatePickerPage from './views/datePickerPage'
 import buttonPage from './views/buttonPage'
+import SwitchPage from './views/switchPage'
 import MessagePage from './views/messagePage'
+import CheckPage from './views/checkPage'
+import cellPage from './views/cellPage'
 import Home from './views/Home'
 
 Vue.use(Router);
@@ -28,6 +31,30 @@ export default new Router({
 	  component: buttonPage,
 	  meta: {
 		title: 'Button 按钮',
+	  },
+	},
+	{
+	  path: '/cell',
+	  name: 'cell',
+	  component: cellPage,
+	  meta: {
+		title: 'Cell 单元格',
+	  },
+	},
+	{
+	  path: '/switch',
+	  name: 'switch',
+	  component: SwitchPage,
+	  meta: {
+		title: 'Switch 单元格',
+	  },
+	},
+	{
+	  path: '/check',
+	  name: 'check',
+	  component: CheckPage,
+	  meta: {
+		title: 'Check 单元格',
 	  },
 	},
 	{
