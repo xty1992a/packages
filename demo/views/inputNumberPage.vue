@@ -4,13 +4,17 @@
     <section>
       <ui-input-number v-model="count"/>
     </section>
+    <h3 class="title">隐藏按钮</h3>
+    <section>
+      <ui-input-number v-model="count1" :controls="false" :max="10"/>
+    </section>
     <h3 class="title">限制区间</h3>
     <section>
-      <ui-input-number v-model="count1" :min="-10" :max="10"/>
+      <ui-input-number v-model="count2" :min="-10" :max="10"/>
     </section>
     <h3 class="title">禁用</h3>
     <section>
-      <ui-input-number v-model="count2" disabled/>
+      <ui-input-number v-model="count3" disabled/>
     </section>
   </div>
 </template>
@@ -24,6 +28,7 @@
 		count: 0,
 		count1: 0,
 		count2: 0,
+		count3: 0,
 	  }
 	},
 	created() {

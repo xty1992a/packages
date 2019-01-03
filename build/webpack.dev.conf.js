@@ -1,12 +1,12 @@
 /*
 config from development packages
 * */
-const path = require('path')
+const path = require('path');
 const webpack = require('webpack');
 const base = require('./webpack.base.conf');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const root = p => path.join(__dirname, '..', p)
+const root = p => path.join(__dirname, '..', p);
 
 module.exports = merge(base, {
   entry: {
@@ -30,9 +30,6 @@ module.exports = merge(base, {
   },
   plugins: [
 	new webpack.HotModuleReplacementPlugin(),
-	new webpack.DefinePlugin({
-	  'PRODUCTION': false,
-	}),
 	new HtmlWebpackPlugin({
 	  filename: 'index.html',
 	  template: 'demo/index.html',
@@ -40,4 +37,4 @@ module.exports = merge(base, {
 	  hash: true,
 	}),
   ],
-})
+});

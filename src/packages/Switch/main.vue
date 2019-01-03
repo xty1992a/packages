@@ -58,6 +58,7 @@
     box-sizing: content-box;
     background-color: #fff;
     transition: background-color 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) inset;
 
     &.ui-switch--on {
       background-color: #1890ff;

@@ -5,6 +5,8 @@
 </template>
 
 <script>
+  import findParent from '../mixins/findParent'
+
   const getParent = (node, name) => {
 	let parent = node.$parent;
 	while (parent) {
@@ -16,6 +18,7 @@
   };
   export default {
 	name: 'check-item',
+	mixins: [findParent],
 	components: {},
 	props: {
 	  label: {
@@ -29,7 +32,7 @@
 	},
 	created() {
 	  let parentName = `${this.$package.prefixName}-check-group`;
-	  this.parent = getParent(this, parentName)
+	  this.findParent(parentName);
 	},
 	methods: {
 	  checkMe() {

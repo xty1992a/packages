@@ -1,7 +1,9 @@
 <template>
   <div class="ui-input-number">
-    <span class="sub" :class="canSub?'':'disabled'" @click="sub"></span>
-    <span class="add" :class="canAdd?'':'disabled'" @click="add"></span>
+    <template v-if="controls">
+      <span class="sub" :class="canSub?'':'disabled'" @click="sub"></span>
+      <span class="add" :class="canAdd?'':'disabled'" @click="add"></span>
+    </template>
     <input :disabled="disabled" type="number" :value="value" @input="print" @blur="blur">
   </div>
 </template>
@@ -11,6 +13,10 @@
 	name: 'input-number',
 	props: {
 	  value: [Number, String],
+	  controls: {
+		type: Boolean,
+		default: true,
+	  },
 	  min: {
 		type: Number,
 		default: 0,

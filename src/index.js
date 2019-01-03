@@ -10,6 +10,8 @@ import Search from './packages/Search'
 import Switch from './packages/Switch'
 import CheckGroup from './packages/CheckGroup'
 import CheckItem from './packages/CheckItem'
+import Collapse from './packages/Collapse'
+import CollapseItem from './packages/CollapseItem'
 import Icon from './packages/Icon'
 import pickItem from './service/pickItem'
 import getDateByPicker from './packages/DatePicker'
@@ -22,6 +24,8 @@ const packages = {
   Action,
   Button,
   Search,
+  Collapse,
+  CollapseItem,
   CheckGroup,
   CheckItem,
   Switch,
@@ -56,9 +60,8 @@ const install = (Vue, opt = {}) => {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
-
+export const components = packages;
 export default {
   install,
-  ...packages,
   service,
 }

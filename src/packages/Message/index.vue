@@ -53,7 +53,7 @@
 
   .ui-message {
     transform: translate3d(-50%, -50%, 0);
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     max-width: 50%;

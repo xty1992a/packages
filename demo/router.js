@@ -10,6 +10,7 @@ import buttonPage from './views/buttonPage'
 import SwitchPage from './views/switchPage'
 import MessagePage from './views/messagePage'
 import CheckPage from './views/checkPage'
+import collapsePage from './views/collapsePage'
 import cellPage from './views/cellPage'
 import Home from './views/Home'
 
@@ -55,6 +56,14 @@ export default new Router({
 	  component: CheckPage,
 	  meta: {
 		title: 'Check 单元格',
+	  },
+	},
+	{
+	  path: '/collapse',
+	  name: 'collapse',
+	  component: collapsePage,
+	  meta: {
+		title: 'Collapse 单元格',
 	  },
 	},
 	{

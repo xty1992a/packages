@@ -53,45 +53,45 @@
 	},
 	methods: {
 	  getItemStyle() {
-		let el = this.$el
-		this.wrapRect.height = el.clientHeight
-		let wrap = el.children[0]
-		let item = wrap.children[0]
+		let el = this.$el;
+		this.wrapRect.height = el.clientHeight;
+		let wrap = el.children[0];
+		let item = wrap.children[0];
 		if (item) {
-		  this.itemRect.height = item.clientHeight
+		  this.itemRect.height = item.clientHeight;
 		}
 	  },
 	  confirm(value) {
-		this.$emit('input', value)
+		this.$emit('input', value);
 	  },
 
 	  onTouchStart(e) {
-		let point = e.touches ? e.touches[0] : e
-		this.startY = point.pageY
+		let point = e.touches ? e.touches[0] : e;
+		this.startY = point.pageY;
 	  },
 	  onTouchMove(e) {
-		let point = e.touches ? e.touches[0] : e
-		this.deltaY = point.pageY - this.startY
-		let index = Math.round((this.offset + this.halfHeight) / this.itemRect.height)
-		this.scrollIndex = Math.max(0, Math.min(this.options.length - 1, index))
+		let point = e.touches ? e.touches[0] : e;
+		this.deltaY = point.pageY - this.startY;
+		let index = Math.round((this.offset + this.halfHeight) / this.itemRect.height);
+		this.scrollIndex = Math.max(0, Math.min(this.options.length - 1, index));
 	  },
 	  onTouchEnd(e) {
-		this.deltaY = 0
-		this.$emit('input', this.options[this.scrollIndex].value)
+		this.deltaY = 0;
+		this.$emit('input', this.options[this.scrollIndex].value);
 	  },
 	},
 	computed: {
 	  valueIndex() {
-		return this.options.findIndex(it => this.isSame(it.value, this.value))
+		return this.options.findIndex(it => this.isSame(it.value, this.value));
 	  },
 	  halfHeight() {
-		return this.wrapRect.height / 2 - this.itemRect.height / 2
+		return this.wrapRect.height / 2 - this.itemRect.height / 2;
 	  },
 	  offset() {
-		let offset = this.valueIndex * this.itemRect.height
-		offset -= this.halfHeight
-		offset -= this.deltaY
-		return offset
+		let offset = this.valueIndex * this.itemRect.height;
+		offset -= this.halfHeight;
+		offset -= this.deltaY;
+		return offset;
 	  },
 	  listStyle() {
 		return {
@@ -108,7 +108,7 @@
 	  options: {
 		handler(now) {
 		  if (this.valueIndex < 0 && now.length) {
-			this.$emit('input', now[0].value)
+			this.$emit('input', now[0].value);
 		  }
 		}, deep: true,
 	  },
@@ -126,6 +126,9 @@
       .item {
         text-align: center;
         padding: 8px 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
 
