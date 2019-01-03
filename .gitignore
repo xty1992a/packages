@@ -1,3 +1,13 @@
 .idea
 node_modules/
 test/index.js
+dist/
+src/font/iconfont.woff
+src/font/iconfont.ttf
+src/font/iconfont.svg
+src/font/iconfont.eot
+src/font/iconfont.css
+src/font/demo_unicode.html
+src/font/demo_symbol.html
+src/font/demo_fontclass.html
+src/font/demo.css

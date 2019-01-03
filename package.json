@@ -1,15 +1,19 @@
 {
-  "name": "packages",
-  "version": "1.0.0",
+  "name": "@redbuck/packages",
+  "version": "1.0.1",
   "description": "vue-packages",
-  "main": "dist/index.js",
+  "main": "dist/package.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.dev.conf.js",
     "build": "webpack --config ./build/webpack.build.conf.js",
-    "watch": "webpack --config ./build/webpack.build.js --watch --env"
+    "upload": "npm publish --access public"
   },
-  "author": "",
+  "author": "TY-xie",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xty1992a/packages.git"
+  },
   "devDependencies": {
     "autoprefixer": "^9.3.1",
     "babel": "^6.23.0",
