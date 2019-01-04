@@ -60,7 +60,7 @@
 
     .ui-message__body {
       background-color: rgba(0, 0, 0, .8);
-      padding: 3px;
+      padding: 4px;
       border-radius: 4px;
       text-align: center;
       font-size: 15px;

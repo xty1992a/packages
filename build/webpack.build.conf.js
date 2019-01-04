@@ -28,6 +28,6 @@ module.exports = merge(base, {
   },
   performance: false,
   optimization: {
-	minimize: false,
+	minimize: true,
   },
 });
