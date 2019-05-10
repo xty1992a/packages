@@ -20,93 +20,94 @@
 </template>
 
 <script>
-  import UiIcon from '../Icon'
+import UiIcon from "../Icon";
 
-  export default {
-	name: 'cell',
-	components: {UiIcon},
-	props: {
-	  title: String,
-	  value: String,
-	  icon: String,
-	  size: {
-		type: String,
-		default: 'normal',
-	  },
-	  to: {
-		type: null,
-	  },
-	  url: {
-		type: String,
-	  },
-	  clickable: Boolean,
-	  border: {
-		type: Boolean,
-		default: true,
-	  },
-	},
-	data() {
-	  return {}
-	},
-	methods: {
-	  clickHandler() {
-		if (this.to && this.$router) {
-		  this.$router.push(this.to)
-		}
-		if (this.url) {
-		  window.location = url
-		}
-		this.$emit('click', ...arguments)
-	  },
-	},
-	computed: {
-	  cls() {
-		let cls = '';
-		if (this.clickable) {
-		  cls += ' ui-cell-clickable'
-		}
-		if (this.border) {
-		  cls += ' ui-hairline--bottom'
-		}
-		return cls
-	  },
-	},
+export default {
+  name: "cell",
+  components: { UiIcon },
+  props: {
+    title: String,
+    value: String,
+    icon: String,
+    size: {
+      type: String,
+      default: "normal"
+    },
+    to: {
+      type: null
+    },
+    url: {
+      type: String
+    },
+    clickable: Boolean,
+    border: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    clickHandler() {
+      if (this.to && this.$router) {
+        this.$router.push(this.to);
+      }
+      if (this.url) {
+        window.location = url;
+      }
+      this.$emit("click", ...arguments);
+    }
+  },
+  computed: {
+    cls() {
+      let cls = "";
+      if (this.clickable) {
+        cls += " ui-cell-clickable";
+      }
+      if (this.border) {
+        cls += " ui-hairline--bottom";
+      }
+      return cls;
+    }
   }
+};
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  @import "../../styles/variable";
+@import "../../styles/variable";
 
-  .ui-cell {
-    padding: 10px;
-    display: flex;
-    font-size: 15px;
-    line-height: 24px;
+.ui-cell {
+  padding: 10px;
+  display: flex;
+  font-size: 15px;
+  line-height: 24px;
 
-    .cell-icon {
-      margin-top: 5px;
-      margin-right: 5px;
-    }
+  .cell-icon {
+    margin-top: 5px;
+    margin-right: 5px;
+  }
 
-    .right-icon {
-      margin-left: 5px;
-    }
+  .right-icon {
+    margin-left: 5px;
+  }
 
-    &.ui-cell-clickable {
-      .clickable;
+  &.ui-cell-clickable {
+    .clickable;
 
-      &:after {
-        left: -48%;
-      }
-    }
-
-    .ui-cell--value, .ui-cell--title {
-      flex: 1;
-    }
-
-    .ui-cell--value {
-      text-align: right;
-      overflow: hidden;
+    &:after {
+      left: -48%;
     }
   }
+
+  .ui-cell--value,
+  .ui-cell--title {
+    flex: 1;
+  }
+
+  .ui-cell--value {
+    text-align: right;
+    overflow: hidden;
+  }
+}
 </style>

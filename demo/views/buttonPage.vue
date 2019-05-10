@@ -42,45 +42,44 @@
 </template>
 
 <script>
-  export default {
-	name: 'button-demo',
-	components: {},
-	data() {
-	  return {}
-	},
-	created() {
-	},
-	methods: {
-	  onClick() {
-		this.$message({
-		  message: '点击了普通按钮',
-		  icon: 'success',
-		  duration: 10000,
-		})
-	  },
-	},
-	computed: {},
-  }
+export default {
+  name: "button-demo",
+  components: {},
+  data() {
+    return {};
+  },
+  created() {},
+  methods: {
+    onClick() {
+      this.$message({
+        message: "点击了普通按钮",
+        icon: "success",
+        duration: 1000
+      });
+    }
+  },
+  computed: {}
+};
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  @import "../styles/variable";
+@import "../styles/variable";
 
-  .button-demo {
+.button-demo {
+  padding: 10px;
+  background-color: #f7f7f7;
+
+  section {
+    .shadow;
     padding: 10px;
-    background-color: #f7f7f7;
 
-    section {
-      .shadow;
-      padding: 10px;
-
-      button {
-        margin: 5px;
-      }
-    }
-
-    p {
-      padding: 10px;
+    button {
+      margin: 5px;
     }
   }
+
+  p {
+    padding: 10px;
+  }
+}
 </style>

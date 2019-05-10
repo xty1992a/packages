@@ -15,7 +15,7 @@
       <ui-cell title="标题">
         <ui-button size="small" slot="value" type="primary">按钮</ui-button>
       </ui-cell>
-      <ui-cell title="value" @click="right=!right">
+      <ui-cell title="value" @click="right=!right" :border="false">
         <ui-icon slot="right-icon" icon="arrow-right" :style="rightIcon"/>
       </ui-cell>
     </section>
@@ -23,42 +23,41 @@
 </template>
 
 <script>
-  export default {
-	name: 'cell-demo',
-	components: {},
-	data() {
-	  return {
-		right: false,
-	  }
-	},
-	created() {
-	},
-	methods: {},
-	computed: {
-	  rightIcon() {
-		return {
-		  transform: this.right ? 'rotate(90deg)' : 'rotate(-90deg)',
-		  marginTop: '5px',
-		  transition: '.3s',
-		}
-	  },
-	},
+export default {
+  name: "cell-demo",
+  components: {},
+  data() {
+    return {
+      right: false
+    };
+  },
+  created() {},
+  methods: {},
+  computed: {
+    rightIcon() {
+      return {
+        transform: this.right ? "rotate(90deg)" : "rotate(-90deg)",
+        marginTop: "5px",
+        transition: ".3s"
+      };
+    }
   }
+};
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  @import "../styles/variable";
+@import "../styles/variable";
 
-  .cell-demo {
-    padding: 10px;
-    background-color: #f7f7f7;
+.cell-demo {
+  padding: 10px;
+  background-color: #f7f7f7;
 
-    section {
-      .shadow;
-    }
-
-    p {
-      padding: 10px;
-    }
+  section {
+    .shadow;
   }
+
+  p {
+    padding: 10px;
+  }
+}
 </style>

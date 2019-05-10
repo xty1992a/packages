@@ -22,36 +22,35 @@
 </template>
 
 <script>
-  export default {
-	name: 'switch-demo',
-	components: {},
-	data() {
-	  return {
-		open: false,
-		open1: true,
-		open2: false,
-	  }
-	},
-	created() {
-	},
-	methods: {},
-	computed: {},
-  }
+export default {
+  name: "switch-demo",
+  components: {},
+  data() {
+    return {
+      open: false,
+      open1: true,
+      open2: false
+    };
+  },
+  created() {},
+  methods: {},
+  computed: {}
+};
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  @import "../styles/variable";
+@import "../styles/variable";
 
-  .switch-demo {
-    padding: 10px;
-    background-color: #f7f7f7;
+.switch-demo {
+  padding: 10px;
+  background-color: #f7f7f7;
 
-    section {
-      .shadow;
-    }
-
-    p {
-      padding: 10px;
-    }
+  section {
+    .shadow;
   }
+
+  p {
+    padding: 10px;
+  }
+}
 </style>

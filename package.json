@@ -1,6 +1,6 @@
 {
   "name": "@redbuck/packages",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "vue-packages",
   "main": "dist/package.js",
   "scripts": {

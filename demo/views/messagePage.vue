@@ -16,53 +16,50 @@
 </template>
 
 <script>
-
-  export default {
-	name: 'message-demo',
-	components: {},
-	data() {
-	  return {
-		delay: {
-		  message: '延时提示',
-		  duration: 4000,
-		},
-		success: {
-		  message: '成功提示',
-		  icon: 'success',
-		},
-		error: {
-		  message: '失败提示',
-		  icon: 'error',
-		},
-		question: {
-		  title: '警告',
-		  message: '警告提示',
-		  icon: 'question',
-		},
-	  }
-	},
-	created() {
-	},
-	methods: {},
-	computed: {},
-  }
+export default {
+  name: "message-demo",
+  components: {},
+  data() {
+    return {
+      delay: {
+        message: "延时提示",
+        duration: 4000
+      },
+      success: {
+        message: "成功提示",
+        icon: "success"
+      },
+      error: {
+        message: "失败提示",
+        icon: "error"
+      },
+      question: {
+        title: "警告",
+        message: "警告提示",
+        icon: "question"
+      }
+    };
+  },
+  created() {},
+  methods: {},
+  computed: {}
+};
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  @import "../styles/variable";
+@import "../styles/variable";
 
-  .message-demo {
+.message-demo {
+  padding: 10px;
+  background-color: #f7f7f7;
+
+  section {
+    .shadow;
     padding: 10px;
-    background-color: #f7f7f7;
-
-    section {
-      .shadow;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-
-    p {
-    }
-
+    margin-bottom: 10px;
   }
+
+  p {
+  }
+}
 </style>

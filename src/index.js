@@ -60,8 +60,27 @@ const install = (Vue, opt = {}) => {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
-export const components = packages;
+export {
+  install,
+  service,
+  Message,
+  Loop,
+  Picker,
+  Infinite,
+  Action,
+  Button,
+  Search,
+  Collapse,
+  CollapseItem,
+  CheckGroup,
+  CheckItem,
+  Switch,
+  Cell,
+  Icon,
+  InputNumber,
+}
 export default {
   install,
   service,
+  Message,
 }

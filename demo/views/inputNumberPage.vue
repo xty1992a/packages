@@ -20,37 +20,36 @@
 </template>
 
 <script>
-  export default {
-	name: 'input-number-demo',
-	components: {},
-	data() {
-	  return {
-		count: 0,
-		count1: 0,
-		count2: 0,
-		count3: 0,
-	  }
-	},
-	created() {
-	},
-	methods: {},
-	computed: {},
-  }
+export default {
+  name: "input-number-demo",
+  components: {},
+  data() {
+    return {
+      count: 0,
+      count1: 0,
+      count2: 0,
+      count3: 0
+    };
+  },
+  created() {},
+  methods: {},
+  computed: {}
+};
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  @import "../styles/variable";
+@import "../styles/variable";
 
-  .input-number-demo {
+.input-number-demo {
+  padding: 10px;
+
+  section {
+    .shadow;
     padding: 10px;
-
-    section {
-      .shadow;
-      padding: 10px;
-    }
-
-    p {
-      padding: 10px;
-    }
   }
+
+  p {
+    padding: 10px;
+  }
+}
 </style>

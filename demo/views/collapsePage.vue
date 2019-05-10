@@ -8,7 +8,7 @@
           <p>中国</p>
           <p>日本</p>
         </ui-collapse-item>
-        <ui-collapse-item title="文字">
+        <ui-collapse-item title="文字" value="2">
           <p>一些文字</p>
           <p>一些文字</p>
           <p>一些文字</p>
@@ -24,7 +24,7 @@
           <p>中国</p>
           <p>日本</p>
         </ui-collapse-item>
-        <ui-collapse-item title="文字">
+        <ui-collapse-item title="文字" value="2">
           <p>一些文字</p>
           <p>一些文字</p>
           <p>一些文字</p>
@@ -36,41 +36,29 @@
 </template>
 
 <script>
-  export default {
-	name: 'collapse-demo',
-	components: {},
-	data() {
-	  return {
-		openPanel: ['1'],
-		openPanel1: ['1'],
-		state: 'USA',
-		stateList: [
-		  {value: 'USA', label: '美国'},
-		  {value: 'China', label: '中国'},
-		  {value: 'Japan', label: '日本'},
-		],
-	  }
-	},
-	created() {
-	},
-	methods: {},
-	computed: {},
+export default {
+  name: "collapse-demo",
+  data() {
+    return {
+      openPanel: ["1"],
+      openPanel1: ["1"]
+    };
   }
+};
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  @import "../styles/variable";
+@import "../styles/variable";
 
-  .collapse-demo {
-    padding: 10px;
+.collapse-demo {
+  padding: 10px;
 
-    section {
-      .shadow;
-    }
-
-    p {
-      padding: 10px;
-    }
-
+  section {
+    .shadow;
   }
+
+  p {
+    padding: 10px;
+  }
+}
 </style>

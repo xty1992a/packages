@@ -34,41 +34,36 @@
 </template>
 
 <script>
-  export default {
-	name: 'switch-demo',
-	components: {},
-	data() {
-	  return {
-		state: 'USA',
-		stateList: [
-		  {value: 'USA', label: '美国'},
-		  {value: 'China', label: '中国'},
-		  {value: 'Japan', label: '日本'},
-		],
-		pickedState: [],
-		isMerry: false,
-	  }
-	},
-	created() {
-	},
-	methods: {},
-	computed: {},
+export default {
+  name: "switch-demo",
+  data() {
+    return {
+      state: "USA",
+      stateList: [
+        { value: "USA", label: "美国" },
+        { value: "China", label: "中国" },
+        { value: "Japan", label: "日本" }
+      ],
+      pickedState: [],
+      isMerry: false
+    };
   }
+};
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  @import "../styles/variable";
+@import "../styles/variable";
 
-  .switch-demo {
-    padding: 10px;
-    background-color: #f7f7f7;
+.switch-demo {
+  padding: 10px;
+  background-color: #f7f7f7;
 
-    section {
-      .shadow;
-    }
-
-    p {
-      padding: 10px;
-    }
+  section {
+    .shadow;
   }
+
+  p {
+    padding: 10px;
+  }
+}
 </style>

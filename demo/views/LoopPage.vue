@@ -3,7 +3,7 @@
     <h3 class="title">基础用法</h3>
     <section>
       <ui-loop :count="3">
-        <p v-for="i in 5">item {{i}}</p>
+        <p v-for="i in 5" :key="i">item {{i}}</p>
       </ui-loop>
     </section>
   </div>
@@ -12,14 +12,6 @@
 <script>
   export default {
 	name: 'loop-demo',
-	components: {},
-	data() {
-	  return {}
-	},
-	created() {
-	},
-	methods: {},
-	computed: {},
   }
 </script>
 
